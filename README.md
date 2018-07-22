@@ -1,10 +1,13 @@
 # Locutus (of Borg)
 
-*🎉🎈🎂🍾🎊🍻💃*
+![img](https://media3.giphy.com/media/zDtyh2ISgzZIY/giphy.gif)
+
+☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️☠️
 
 *Serverless functions that enable various home automation tasks via voice, text, CRON and external service integration.*
 
 A series of AWS Lambda functions, managed by Serverless Framework, that handle various home automation tasks via integrations.
+
 
 ## TODOS:
 
