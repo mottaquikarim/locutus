@@ -4,12 +4,13 @@
 
 *Serverless functions that enable various home automation tasks via voice, text, CRON and external service integration.*
 
-This app exposes a simple web API for querying prayer times (in the islamic tradition) by space and time. See an example of the deployed app **[here](https://8ldbpgh8mh.execute-api.us-east-1.amazonaws.com/prod/location/40.7128/-74.0059)** (<strong><a href="https://mottaquikarim.github.io/PrayerApp/docs/index.html" target="_blank">Docs here</a></strong>). This app leverages the **[praytimes.org](http://praytimes.org/manual)** project to cacluate prayer times. It is worth noting that the version of the **praytimes.org** library used here requires a patch due to a python scope issue (not sure how to push that patch back upstream, the project seems largely abandoned).
+A series of AWS Lambda functions, managed by Serverless Framework, that handle various home automation tasks via integrations.
 
-This app is built and tested with Python3.6 and deployed to AWS Lambda using the Serverless Framework through Travis CI. We 
-use Codeclimate to keep track of maintainability and test coverage.
+## TODOS:
 
-There are currently no limitations on API usage on the `/prod` endpoint, which is CORS enabled (therefore, possible to use with frontend javascript). This policy will remain if and until there is a good reason to restrict usage.
+* CI integration with Travis!
+* Set up functional testins with Makefile, write functional and unit tests
+* Set Up Twilio support for the ecovacs service
 
 ## Table of Contents
 * **[System Requirements](#system-requirements)**
