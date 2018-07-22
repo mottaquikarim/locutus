@@ -9,3 +9,10 @@ stage
 
 # For assertions
 TEST=1
+
+# For Ecovacs connection
+EMAIL
+PASSWORDHASH
+DEVICEID
+COUNTRY
+CONTINENT
