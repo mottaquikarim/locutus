@@ -8,7 +8,7 @@
 
 A series of AWS Lambda functions, managed by Serverless Framework, that handle various home automation tasks via integrations.
 
-Called Locutus as an homage to the Star Trek: The Next Generation villians who were a "hive mind" but spoke as one. Similarly, this project will combine various integrations (vacuum, smart light, smart lock, etc) through one "voice" (Alexa, initially) and more (ie: webhooks, etc). 
+Called [Locutus of Borg](http://memory-alpha.wikia.com/wiki/Locutus_of_Borg) as an homage to the Star Trek: The Next Generation villians who were a "hive mind" but spoke as one. Similarly, this project will combine various integrations (vacuum, smart light, smart lock, etc) through one "voice" (Alexa, initially) and more (ie: webhooks, etc). 
 
 
 ## TODOS:
