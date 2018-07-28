@@ -3,6 +3,9 @@ import time
 import json
 import uuid
 
+from twilio.twiml.messaging_response import MessagingResponse
+from urllib.parse import parse_qs
+
 from locutus.conf import SUPPORTED_APPLIANCES
 from locutus.appliances import get_endpoint_from_v3_appliance
 from locutus.ecovacs import start, stop 
@@ -12,8 +15,41 @@ from locutus.ecovacs import start, stop
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
+def get_resp(message):
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/xml',
+        },
+        'body': str(message),
+    }
+
+def webhook_handler(event, context):
+    logger.info('WEBHOOK request is {}'.format(json.dumps(event)))
+    resp = MessagingResponse()
+
+    body = parse_qs(event['body'])
+    message = body.get('Body', [])
+    if len(message) == 0:
+        resp.message("Cannot process request")
+        return get_resp(resp)
+
+    message = message[0]
+
+    if "vacuum" in message and "on" in message:
+        start()
+        resp.message("vacuum turned on")
+    elif "vacuum" in message and "off" in message:
+        stop()
+        resp.message("vacuum turned off")
+    else:
+        resp.message("I don't know how to do that")
+
+    return get_resp(resp)
+
 
 def ecovacs_handler(request, context):
+    logger.info('request is {}'.format(json.dumps(request)))
     if request['directive']['header']['name'] == 'Discover':
         response = handle_discovery_v3(request)
     else:
@@ -41,14 +77,17 @@ def handle_discovery_v3(request):
 def handle_non_discovery_v3(request):
     request_namespace = request['directive']['header']['namespace']
     request_name = request['directive']['header']['name']
+    request_endpoint_name = request['directive']['endpoint']['endpointId']
 
     if request_namespace == 'Alexa.PowerController':
         if request_name == 'TurnOn':
             value = 'ON'
-            start()
+            if request_endpoint_name == 'ecovac':
+                start()
         else:
             value = 'OFF'
-            stop()
+            if request_endpoint_name == 'ecovac':
+                stop()
 
         response = {'context': {'properties': [{
             'namespace': 'Alexa.PowerController',

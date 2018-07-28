@@ -23,6 +23,7 @@ services:
       - GOOGLE_API_KEY
       - GIT_BRANCH
       - GIT_COMMIT_SHA
+    env_file: ${DOCKER_ENV_FILE:-envvars}
     volumes:
       - .:/app
 
