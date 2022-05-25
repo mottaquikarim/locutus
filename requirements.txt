@@ -16,7 +16,7 @@ pycountry==18.5.26
 pycountry-convert==0.7.2
 pycryptodome==3.6.4
 pytest-mock==1.10.0
-PyJWT==1.6.4
+PyJWT==2.4.0
 PySocks==1.6.8
 pytz==2018.5
 repoze.lru==0.7
